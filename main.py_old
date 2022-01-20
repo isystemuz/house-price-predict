@@ -1,0 +1,45 @@
+from fastapi import FastAPI
+
+app = FastAPI()
+
+# TODO: asosiy sahifaga biror narsa ishlab chiqish kerak
+
+@app.get("/")
+async def home():
+    return {"message": "Assiy sahifa, wow quite fast!!!!"}
+
+
+@app.get("/test")
+async def func1():
+    a = 10
+    b = 20
+    return {"data": (a + b)}
+
+
+# Resource: test1
+
+@app.get("/test1/a/{a}/b/{b}")
+async def func2(a: int, b: int):
+    return {
+        "data": {
+            "a": a,
+            "b": b,
+            "c": a + b
+        }
+    }
+
+
+@app.post("/test1")
+async def root(a: int = 0, b: int = 0):
+    return { 'post method: {}'.format(a+b)}
+
+
+@app.put("/test1")
+async def root():
+    return {"put method"}
+
+
+@app.delete("/test1")
+async def root():
+    return {"delete method"}
+
